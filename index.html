@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}PathoVision AI — Digital Pathology{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="hero-copy">
+    <div class="eyebrow">DIGITAL PATHOLOGY • EXPLAINABLE AI</div>
+    <h1>Turn pathology images into <span>interpretable AI insights.</span></h1>
+    <p>
+      A professional web interface for uploading compatible histopathology
+      patches, running a ResNet50 classifier, visualizing model attention,
+      and generating a structured analysis report.
+    </p>
+    <div class="hero-actions">
+      <a class="primary-btn" href="{{ url_for('register') }}">Get Started</a>
+      <a class="outline-btn" href="{{ url_for('login') }}">Pathologist Login</a>
+    </div>
+    <div class="trust-row">
+      <div><b>ResNet50</b><span>Deep learning</span></div>
+      <div><b>Grad-CAM</b><span>Explainability</span></div>
+      <div><b>PDF</b><span>Case reporting</span></div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="scan-card">
+      <div class="scan-top"><span>LIVE ANALYSIS</span><span class="dot"></span></div>
+      <div class="tissue-art">
+        <div class="cell c1"></div><div class="cell c2"></div>
+        <div class="cell c3"></div><div class="cell c4"></div>
+        <div class="cell c5"></div><div class="cell c6"></div>
+        <div class="heat h1"></div><div class="heat h2"></div>
+      </div>
+      <div class="scan-bottom">
+        <div><small>MODEL</small><b>ResNet50</b></div>
+        <div><small>EXPLAINABILITY</small><b>Grad-CAM</b></div>
+        <div class="score">92%</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="feature-grid">
+  <div class="feature"><span>01</span><h3>Secure access</h3><p>Individual pathologist accounts and protected case history.</p></div>
+  <div class="feature"><span>02</span><h3>AI analysis</h3><p>Upload an image and receive a binary classification with confidence.</p></div>
+  <div class="feature"><span>03</span><h3>Explainable output</h3><p>Grad-CAM highlights regions that influenced the model response.</p></div>
+  <div class="feature"><span>04</span><h3>Professional report</h3><p>Generate a downloadable PDF containing the case and AI result.</p></div>
+</section>
+
+<section class="disclaimer">
+  <b>Research prototype:</b> PathoVision AI is intended for educational and
+  research/decision-support demonstration and does not replace a qualified
+  pathologist or clinical diagnosis.
+</section>
+{% endblock %}

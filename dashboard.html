@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Dashboard — PathoVision AI{% endblock %}
+{% block content %}
+<section class="page-head">
+  <div><div class="eyebrow">PATHOLOGIST WORKSPACE</div><h1>Good to see you, {{ session.get('user_name') }}</h1><p>Review your AI-assisted pathology cases.</p></div>
+  <a class="primary-btn" href="{{ url_for('analyze') }}">＋ New Analysis</a>
+</section>
+
+<section class="stats-grid">
+  <div class="stat"><span>Total Cases</span><strong>{{ stats.total }}</strong><small>All analyses</small></div>
+  <div class="stat"><span>Positive</span><strong>{{ stats.positive }}</strong><small>Model classification</small></div>
+  <div class="stat"><span>Negative</span><strong>{{ stats.negative }}</strong><small>Model classification</small></div>
+  <div class="stat"><span>Avg. Confidence</span><strong>{{ "%.1f"|format(stats.avg_confidence or 0) }}%</strong><small>Across your cases</small></div>
+</section>
+
+<section class="section-card">
+  <div class="section-title"><div><h2>Recent analyses</h2><p>Your latest pathology cases.</p></div><a href="{{ url_for('history') }}">View all →</a></div>
+  {% if recent %}
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Case</th><th>Result</th><th>Confidence</th><th>Date</th><th></th></tr></thead>
+    <tbody>
+    {% for c in recent %}
+      <tr>
+        <td><b>{{ c.case_ref }}</b><small>{{ c.original_filename }}</small></td>
+        <td><span class="badge {{ c.prediction|lower }}">{{ c.prediction }}</span></td>
+        <td>{{ "%.2f"|format(c.confidence) }}%</td>
+        <td>{{ c.created_at }}</td>
+        <td><a class="table-link" href="{{ url_for('result', case_id=c.id) }}">Open</a></td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  </div>
+  {% else %}
+    <div class="empty"><div class="empty-icon">⌁</div><h3>No analyses yet</h3><p>Upload your first compatible histopathology image.</p><a class="primary-btn" href="{{ url_for('analyze') }}">Start Analysis</a></div>
+  {% endif %}
+</section>
+{% endblock %}

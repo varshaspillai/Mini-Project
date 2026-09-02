@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}New Analysis — PathoVision AI{% endblock %}
+{% block content %}
+<section class="page-head">
+  <div><div class="eyebrow">AI ANALYSIS</div><h1>Analyze a pathology image</h1><p>Upload a compatible histopathology patch for ResNet50 analysis.</p></div>
+</section>
+
+<div class="analysis-layout">
+  <section class="section-card">
+    <form method="post" enctype="multipart/form-data" id="uploadForm">
+      <div class="two-col">
+        <div><label>Case Reference</label><input name="case_ref" placeholder="e.g. PCAM-0001"></div>
+        <div><label>Patient / Sample Reference</label><input name="patient_ref" placeholder="Non-identifying reference"></div>
+        <div class="span-2"><label>Specimen / Notes</label><textarea name="specimen" rows="3" placeholder="Optional specimen information"></textarea></div>
+      </div>
+
+      <label class="upload-box" id="dropZone">
+        <input type="file" name="image" id="imageInput" accept=".png,.jpg,.jpeg,.tif,.tiff" required>
+        <div class="upload-icon">↑</div>
+        <h3>Drop pathology image here</h3>
+        <p>or click to browse • PNG/JPG/JPEG/TIF/TIFF • max 10 MB</p>
+        <div id="fileName" class="file-name">No file selected</div>
+      </label>
+
+      <div class="process-strip">
+        <div><span>1</span><b>Upload</b><small>Image input</small></div>
+        <div><span>2</span><b>ResNet50</b><small>AI inference</small></div>
+        <div><span>3</span><b>Grad-CAM</b><small>Explainability</small></div>
+        <div><span>4</span><b>Report</b><small>PDF output</small></div>
+      </div>
+
+      <button class="primary-btn full" type="submit">Analyze Image →</button>
+    </form>
+  </section>
+
+  <aside class="info-panel">
+    <div class="mini-icon">AI</div>
+    <h3>What happens next?</h3>
+    <ol>
+      <li>The image is resized to the model's expected input.</li>
+      <li>ResNet50 produces a binary prediction.</li>
+      <li>A confidence score is calculated.</li>
+      <li>Grad-CAM generates an attention heatmap.</li>
+      <li>The case can be saved and exported as PDF.</li>
+    </ol>
+    <div class="warning-note"><b>Reminder</b><br>This is a research/educational prototype and not a clinical diagnostic system.</div>
+  </aside>
+</div>
+{% endblock %}

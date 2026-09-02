@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}History — PathoVision AI{% endblock %}
+{% block content %}
+<section class="page-head">
+  <div><div class="eyebrow">CASE HISTORY</div><h1>Previous analyses</h1><p>All cases associated with your account.</p></div>
+  <a class="primary-btn" href="{{ url_for('analyze') }}">＋ New Analysis</a>
+</section>
+
+<section class="section-card">
+  {% if cases %}
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Case</th><th>Result</th><th>Confidence</th><th>Reference</th><th>Date</th><th></th></tr></thead>
+    <tbody>
+    {% for c in cases %}
+      <tr>
+        <td><b>{{ c.case_ref }}</b><small>{{ c.original_filename }}</small></td>
+        <td><span class="badge {{ c.prediction|lower }}">{{ c.prediction }}</span></td>
+        <td>{{ "%.2f"|format(c.confidence) }}%</td>
+        <td>{{ c.patient_ref or "-" }}</td>
+        <td>{{ c.created_at }}</td>
+        <td><a class="table-link" href="{{ url_for('result', case_id=c.id) }}">Open</a></td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  </div>
+  {% else %}
+  <div class="empty"><h3>No case history</h3><p>Your completed analyses will appear here.</p></div>
+  {% endif %}
+</section>
+{% endblock %}

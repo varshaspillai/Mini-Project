@@ -1,0 +1,172 @@
+{% extends "base.html" %}
+
+{% block title %}Register — PathoVision AI{% endblock %}
+
+{% block content %}
+
+<div class="auth-shell">
+
+  <div class="auth-card wide">
+
+    <div class="eyebrow">
+      PATHOLOGIST REGISTRATION
+    </div>
+
+    <h1>Create your account</h1>
+
+    <p>
+      Set up a secure workspace for pathology image analysis.
+    </p>
+
+
+    <form
+      method="POST"
+      action="{{ url_for('register') }}"
+      class="two-col"
+    >
+
+      <!-- FULL NAME -->
+
+      <div>
+
+        <label for="full_name">
+          Full Name *
+        </label>
+
+        <input
+          id="full_name"
+          type="text"
+          name="full_name"
+          autocomplete="name"
+          required
+        >
+
+      </div>
+
+
+      <!-- MEDICAL ID -->
+
+      <div>
+
+        <label for="registration_id">
+          Medical / Professional ID *
+        </label>
+
+        <input
+          id="registration_id"
+          type="text"
+          name="registration_id"
+          required
+        >
+
+      </div>
+
+
+      <!-- HOSPITAL -->
+
+      <div>
+
+        <label for="hospital">
+          Institution / Hospital *
+        </label>
+
+        <input
+          id="hospital"
+          type="text"
+          name="hospital"
+          required
+        >
+
+      </div>
+
+
+      <!-- EMAIL -->
+
+      <div>
+
+        <label for="email">
+          Email *
+        </label>
+
+        <input
+          id="email"
+          type="email"
+          name="email"
+          autocomplete="email"
+          required
+        >
+
+      </div>
+
+
+      <!-- PASSWORD -->
+
+      <div>
+
+        <label for="password">
+          Password *
+        </label>
+
+        <input
+          id="password"
+          type="password"
+          name="password"
+          minlength="6"
+          autocomplete="new-password"
+          required
+        >
+
+      </div>
+
+
+      <!-- CONFIRM PASSWORD -->
+
+      <div>
+
+        <label for="confirm_password">
+          Confirm Password *
+        </label>
+
+        <input
+          id="confirm_password"
+          type="password"
+          name="confirm_password"
+          minlength="6"
+          autocomplete="new-password"
+          required
+        >
+
+      </div>
+
+
+      <!-- SUBMIT -->
+
+      <div class="span-2">
+
+        <button
+          class="primary-btn full"
+          type="submit"
+        >
+          Create Account
+        </button>
+
+      </div>
+
+    </form>
+
+
+    <p class="switch">
+
+      Already registered?
+
+      <a href="{{ url_for('login') }}">
+        Sign in
+      </a>
+
+    </p>
+
+  </div>
+
+</div>
+
+{% endblock %}
